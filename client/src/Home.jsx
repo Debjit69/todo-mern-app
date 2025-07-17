@@ -32,17 +32,19 @@ function Home ()  {
 
   return (
     <div className='home'>
-      <h1>ToDo List</h1>
+      <h1>Todo List</h1>
       <Create />
-      <br />
-      {
-        todos.length === 0 
-        ?
-        <div><h2>No Record</h2></div>
-        :
-        todos.map(todo => (
-
-            <div className='task'>
+      <div className="tasks-container">
+        {
+          todos.length === 0 
+          ?
+          <div className="no-tasks">
+            <h2>No tasks yet</h2>
+            <p>Add a task above to get started!</p>
+          </div>
+          :
+          todos.map(todo => (
+            <div key={todo._id} className={`task ${todo.done ? 'completed-task' : 'pending-task'}`}>
               <div className='checkbox' onClick={() => handleEdit(todo._id)}>
                 {todo.done ? 
                    <BsFillCheckCircleFill className='icon'></BsFillCheckCircleFill>
@@ -50,13 +52,14 @@ function Home ()  {
                 }
                 <p className={todo.done ? "line_through" : ""}> {todo.task}</p>
               </div>
-               <div>
-                <span><BsFillTrashFill className='icon' 
-                onClick={() => handleDelete(todo._id)}/></span>
-               </div>
+              <div className="task-actions">
+                <BsFillTrashFill className='icon' 
+                onClick={() => handleDelete(todo._id)}/>
+              </div>
             </div>
-        ))
-    }
+          ))
+        }
+      </div>
     </div>
   )
 }
