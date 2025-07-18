@@ -1,4 +1,4 @@
-ENDPOINT = process.env.ENDPOINT || "http://localhost:3001"
+ENDPOINT = process.env.ENDPOINT || "https://todo-mern-app-c2ev.onrender.com"
 function api(path=""){
   return ENDPOINT + String(path)
 }
