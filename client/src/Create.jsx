@@ -1,11 +1,10 @@
 import React,{useState} from 'react'
-import {api} from "config.js"
 import axios from 'axios'
 
 function Create() {
   const [task, setTask] = useState()
   const handleAdd = () =>{
-    axios.post(api("/add"),{task:task})
+    axios.post("/add",{task:task})
     .then(result => {
       location.reload()
     })

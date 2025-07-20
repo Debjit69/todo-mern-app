@@ -1,19 +1,19 @@
 import React, {useEffect,useState} from 'react'
 import Create from './Create'
 import axios from 'axios'
-import {api} from "config.js"
+
 import { BsCircleFill, BsFillCheckCircleFill, BsFillTrashFill } from 'react-icons/bs';
 
 function Home ()  {
     const [todos,setTodos]=useState([])
     useEffect(() => {
-      axios.get(api('/get'))
+      axios.get('/get')
       .then(result => setTodos(result.data))
       .catch(err => console.log(err))
     },[])
 
     const handleEdit = (id) => {
-      axios.put(api('/update') + id)
+      axios.put('/update/' + id)
       .then(result => {
         location.reload()
       })
@@ -22,7 +22,7 @@ function Home ()  {
     }
 
     const handleDelete = (id) => {
-      axios.delete(api('/delete') + id)
+      axios.delete('/delete/' + id)
       .then(result => {
         location.reload()
       })
